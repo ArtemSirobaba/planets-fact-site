@@ -4,7 +4,7 @@ const PlanetImage = ({ openTab, planetInfo }) => {
   return (
     <div className="h-1/2 w-full sm:w-2/3 relative flex justify-center p-10">
       <img
-        className="w-full h-full md:h-[30rem]"
+        className="w-full h-full sm:w-auto md:h-[30rem]"
         src={
           openTab !== 2
             ? process.env.PUBLIC_URL + planetInfo.images.planet
