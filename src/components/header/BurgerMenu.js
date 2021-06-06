@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import Tab from "./Tab";
-
-const BurgerMenu = ({ data, setOpenTab }) => {
+const BurgerMenu = ({ data, setOpenTab, setOverFlow }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="sm:hidden relative flex items-center justify-between">
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="focus:outline-none relative w-10 h-10 mr-2 text-white bg-transparent z-50"
+        onClick={() => {
+          setIsOpen(!isOpen);
+          setOverFlow();
+        }}
+        className="focus:outline-none relative z-50 w-10 h-10 mr-2 text-white bg-transparent"
       >
         <div className="left-1/2 top-1/2 absolute block w-5 transform -translate-x-1/2 -translate-y-1/2">
           <span
@@ -28,15 +30,20 @@ const BurgerMenu = ({ data, setOpenTab }) => {
         </div>
       </button>
       <div
-        className={`fixed top-0 left-0 z-40 w-full bg-[#070625] h-full duration-700 transform ${
+        className={`fixed top-0 left-0 z-40 w-screen bg-[#070625] h-screen duration-700 transform ${
           !isOpen ? "-translate-x-full" : "translate-y-0"
         }`}
       >
         <div className="flex flex-col items-center flex-1 mt-16 text-3xl">
           {data.map((item, index) => (
-            <div onClick={() => setIsOpen(!isOpen)}>
+            <div
+              onClick={() => {
+                setIsOpen(!isOpen);
+                setOverFlow();
+              }}
+              key={item.name}
+            >
               <Tab
-                key={item.name}
                 setOpenTab={() => setOpenTab(index + 1)}
                 planetName={item.name}
               />
